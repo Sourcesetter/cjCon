@@ -1,15 +1,15 @@
 ---
-resoures:
-- name: git-resources
+resources:
+- name: cloud-resource
   type: git
   source:
-    uri:https://github.com/Sourcesetter/cjCon.git
-    branch: master
+    uri: https://github.com/Sourcesetter/cjCon.git
+    branch: master 
 
 jobs:
-- name: task-inputs-git
+- name: job-hello-dir
   public: true
   plan:
-  - get: git-resources
-  - task: task-exec
-    file: git-resources/cjtests/task-exec.yml
+  - get: cloud-resource
+  - task: hello-dir
+    file: cloud-resource/cjtests/task-exec.yml
