@@ -6,4 +6,4 @@ image_resource:
   source: {repository: busybox}
 
 run:
-  path: ./task-ex.sh
+  path: ./pipe-skript/task-ex.sh
