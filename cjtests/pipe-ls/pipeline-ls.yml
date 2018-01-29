@@ -12,4 +12,4 @@ jobs:
   plan:
   - get: cloud-resource
   - task: hello-dir
-    file: cloud-resource/cjtests/task-exec.yml
+    file: cloud-resource/cjtests/task-ls.yml
