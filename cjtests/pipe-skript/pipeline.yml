@@ -12,4 +12,4 @@ jobs:
   plan:
   - get: cloud-resource
   - task: exec-script
-    file: cloud-resource/cjtests/pipe-script/task.yml
+    file: cloud-resource/cjtests/pipe-skript/task.yml
