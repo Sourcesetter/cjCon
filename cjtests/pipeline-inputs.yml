@@ -11,5 +11,5 @@ jobs:
   public: true
   plan:
   - get: git-resources
-  - task: task-inputs
-    file: git-resources/cjtests/task-inputs.yml
+  - task: task-exec
+    file: git-resources/cjtests/task-exec.yml
