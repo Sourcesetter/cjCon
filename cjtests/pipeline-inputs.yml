@@ -1,0 +1,22 @@
+---
+resoures:
+- name: resource-tuturial
+  type: git
+  source:
+    uri:https://github.com/Sourcesetter/ConcourseTest.git
+
+jobs:
+  job job-task-inputs has been added:
+  name: task-inputs
+  public: true
+  plan:
+  - task: task-inputs
+    config:
+      platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: busybox}
+      inputs:
+      - name: invar
+      run:
+        path: ./invar/ex.sh
