@@ -7,9 +7,9 @@ resources:
     branch: master 
 
 jobs:
-- name: job-hello-dir
+- name: job-exec-script
   public: true
   plan:
   - get: cloud-resource
-  - task: hello-dir
-    file: cloud-resource/cjtests/pipe-ls/task-ls.yml
+  - task: exec-script
+    file: cloud-resource/cjtests/pipe-script/task.yml
