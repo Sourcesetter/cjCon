@@ -1,1 +1,1 @@
-fly -t lite set-pipeline -p hellodir11 -c pipeline-ls.yml 
+fly -t lite set-pipeline -p hellodir12 -c pipeline-ls.yml 
