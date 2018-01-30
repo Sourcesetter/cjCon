@@ -11,6 +11,7 @@ jobs:
   public: true
   plan:
   - get: cloud-resource
+    trigger: true
   - task: exec-ls
     file: cloud-resource/cjtests/pipe-skript/task-ls.yml
   - task: exec-script
