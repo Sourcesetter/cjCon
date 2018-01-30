@@ -5,5 +5,8 @@ image_resource:
   type: docker-image
   source: {repository: busybox}
 
+inputs:
+- name: cloud-resource
+
 run:
-  path: ./task-ex.sh 
+  path: cloud-resource/cjtests/pipe-skript/task-ex.sh 
