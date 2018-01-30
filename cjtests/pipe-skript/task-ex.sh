@@ -5,3 +5,4 @@ ls -alR
 echo "----------"
 uname -a
 echo "----------"
+echo "----------"
