@@ -1,1 +1,1 @@
-fly -t lite set-pipeline -p pipe-skript -c pipeline.yml 
+fly -t lite set-pipeline -p pipe-skript01 -c pipeline.yml 
