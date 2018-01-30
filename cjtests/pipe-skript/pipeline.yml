@@ -7,9 +7,16 @@ resources:
     branch: master 
 
 jobs:
+- name: job-ls
+  public: true
+  plan:
+  - get: cloud-resource
+  - task: exec-ls
+    file: cloud-resource/cjtests/pipe-ls/task-ls.yml
 - name: job-exec-script
   public: true
   plan:
   - get: cloud-resource
   - task: exec-script
     file: cloud-resource/cjtests/pipe-skript/task.yml
+
