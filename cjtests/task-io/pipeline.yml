@@ -34,7 +34,7 @@ jobs:
         source: {repository: busybox}
 
       inputs:
-      - name: resource-tutorial
+      - name: cloud-resource
       - name: some-files
 
       run:
