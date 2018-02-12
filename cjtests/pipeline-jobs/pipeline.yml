@@ -32,7 +32,8 @@ jobs:
       run:
         path: git-resource/cjtests/pipeline-jobs/create_some_files.sh
   - put: resource-gist
-    params: {repository: some-files-gist}
+    params: 
+      repository: some-files-gist
 
 - name: sed_files 
   plan:
@@ -63,6 +64,8 @@ jobs:
     passed: [sed_files]
     trigger: true
   - task: show_files_task
+    config:
+      platform: linux
       image_resource:
         type: docker-image
         source: {repository: busybox}
@@ -70,5 +73,6 @@ jobs:
         - name: git-resource
         - name: some-sed-files-gist
       run:
-        path: cat
-        args: [some-sed-files-gist/*]
+        # path: cat
+        # args: [some-sed-files-gist/*]
+        path: git-resource/cjtests/pipeline-jobs/show_files.sh
