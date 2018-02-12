@@ -22,4 +22,4 @@ git commit -m "stream edited files"
 
 echo "Verzeichnisstruktur"
 cd ..
-ls -alR . 
+ls -lR . 
