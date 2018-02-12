@@ -26,7 +26,7 @@ jobs:
       run:
         path: cloud-resource/cjtests/task-io/create_some_files.sh
 
-  - task: show-some-files
+  - task: sed-files
     config:
       platform: linux
       image_resource:
@@ -36,6 +36,23 @@ jobs:
       inputs:
       - name: cloud-resource
       - name: some-files
+      outputs:
+      - name: some-sed-files
+
+      run:
+        path: cloud-resource/cjtests/task-io/sed_files.sh
+
+
+  - task: show-some-files
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: busybox}
+
+      inputs:
+      - name: cloud-resource
+      - name: some-sed-files
 
       run:
         path: cloud-resource/cjtests/task-io/show_files.sh
