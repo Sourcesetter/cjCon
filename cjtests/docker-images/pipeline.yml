@@ -2,8 +2,8 @@ resources:
 - name: tutorial
   type: git
   source:
-    uri: https://github.com/drnic/concourse-tutorial.git
-    branch: develop
+    uri: https://github.com/Sourcesetter/cjCon.git
+    branch: master
 
 - name: hello-world-docker-image
   type: docker-image
