@@ -28,9 +28,54 @@ jobs:
         - name: git-resource
         - name: resource-gist
       outputs:
+	# Output der Task entspr. neuem Verzeichnis im Container
         - name: some-files-gist
       run:
         path: git-resource/cjtests/pipeline-jobs/create_some_files.sh
+  # Schreiben des Ordners some-files-gist in das resource-gist
+  # Dort liegt der Output des Jobs
   - put: resource-gist
     params: {repository: some-files-gist}
 
+- name: sed_files 
+  plan:
+  - get: git-resource
+  # - get: some-files-gist //Ist falsch da job output im resource-gist liegt.
+  - get: resource-gist 
+    passed: [create_some_files]
+    trigger: true
+  - task: sed_files_task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: { repository: starkandwayne/concourse }
+      inputs:
+        - name: git-resource
+        - name: resource-gist 
+      outputs:
+        - name: some-sed-files-gist
+      run:
+        path: git-resource/cjtests/pipeline-jobs/sed_files.sh
+  - put: resource-gist
+    params: {repository: some-sed-files-gist}
+
+- name: show_files
+  plan:
+  - get: git-resource
+  - get: resource-gist 
+    passed: [sed_files]
+    trigger: true
+  - task: show_files_task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: busybox}
+      inputs:
+        - name: git-resource
+        - name: resource-gist 
+      run:
+        # path: cat
+        # args: [some-sed-files-gist/*]
+        path: git-resource/cjtests/pipeline-jobs/show_files.sh

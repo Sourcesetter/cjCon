@@ -4,7 +4,8 @@ set -e # fail fast
 set -x # print commands
 
 git clone resource-gist some-files-gist
-# Statt mkdir some-files
+# Kopiert den Inhalt des resource-gist in den 
+# Ordner some-files-gist im Docker Container
 
 cd some-files-gist
 
@@ -24,5 +25,4 @@ git add .
 git commit -m "Bumped date and files"
 
 cd ..
-echo "cd .. mit ls -alR"
 ls -lR . 
