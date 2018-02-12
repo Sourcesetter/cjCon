@@ -1,0 +1,77 @@
+---
+resources:
+- name: git-resource
+  type: git
+  source:
+    uri: https://github.com/Sourcesetter/cjCon.git
+    branch: master
+- name: resource-gist
+  type: git
+  source:
+    branch: master
+    uri:         ((gist-uri))
+    private_key: ((git-key))
+
+jobs:
+- name: create_some_files 
+  serial: true
+  plan:
+  - get: git-resource 
+  - get: resource-gist
+  - task: create_some_files_task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: { repository: starkandwayne/concourse }
+      inputs:
+        - name: git-resource
+        - name: resource-gist
+      outputs:
+        - name: some-files-gist
+      run:
+        path: git-resource/cjtests/pipeline-jobs/create_some_files.sh
+  - put: resource-gist
+    params: {repository: some-files-gist}
+
+- name: sed_files 
+  plan:
+  - get: git-resource
+  - get: some-files-gist
+    passed: [create_some_files]
+    trigger: true
+  - task: sed_files_task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: { repository: starkandwayne/concourse }
+      inputs:
+        - name: git-resource
+        - name: some-files-gist
+      outputs:
+        - name: some-sed-files-gist
+      run:
+        path: git-resource/cjtests/pipeline-jobs/sed_files.sh
+  - put: resource-gist
+    params: {repository: some-sed-files-gist}
+
+- name: show_files
+  plan:
+  - get: git-resource
+  - get: some-sed-files-gist
+    passed: [sed_files]
+    trigger: true
+  - task: show_files_task
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: busybox}
+      inputs:
+        - name: git-resource
+        - name: some-sed-files-gist
+      run:
+        # path: cat
+        # args: [some-sed-files-gist/*]
+        path: git-resource/cjtests/pipeline-jobs/show_files.sh

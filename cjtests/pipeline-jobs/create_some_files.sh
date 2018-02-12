@@ -23,4 +23,6 @@ git config --global user.name "Concourse"
 git add .
 git commit -m "Bumped date and files"
 
+cd ..
+echo "cd .. mit ls -alR"
 ls -alR . 
