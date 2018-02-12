@@ -5,12 +5,11 @@ echo $me
 set -e # fail fast
 set -x # print commands
 
-git clone resource-gist some-sed-files-gist
+# git clone resource-gist some-sed-files-gist
 
-cd some-sed-files-gist
+cd resource-gist
 ls *
 cat *
-
 
 echo "Verzeichnisstruktur nach cd .."
 cd ..
