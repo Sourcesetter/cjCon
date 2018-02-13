@@ -1,17 +1,17 @@
 #!/bin/sh
 me=`basename $0`
-echo $me
+echo Output form: $me
 
 set -e # fail fast
 set -x # print commands
 
-# Hier wird kein Docker-Image mit einem Git benötigt
-# Einfaches Download das gist-Verzeichnisses in den Docker-Container
-# git clone resource-gist some-sed-files-gist
+# Git-resource ist als Input für den Run-Lauf definiert
+# Damit mountet man das Git in den Container
 
+
+echo "Verzeichnisstruktur in git-resource"
 cd git-resource
 ls *
-cat *
 
 echo "Verzeichnisstruktur nach cd .."
 cd ..
