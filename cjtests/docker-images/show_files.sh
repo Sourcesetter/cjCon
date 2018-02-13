@@ -9,7 +9,7 @@ set -x # print commands
 # Einfaches Download das gist-Verzeichnisses in den Docker-Container
 # git clone resource-gist some-sed-files-gist
 
-cd resource-gist
+cd git-resource
 ls *
 cat *
 

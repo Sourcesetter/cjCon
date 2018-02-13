@@ -28,8 +28,8 @@ jobs:
         type: docker-image
         source:
           repository: ((docker-hub-username))/concourse-hello-world
+      inputs:
+        - name: git-resource
       run:
-        path: /bin/hello-world
+        path: git-resource/cjtests/docker-images/show_files.sh 
         args: []
-      params:
-        NAME: ((docker-hub-username))
